@@ -66,7 +66,7 @@ export default function App({ carts }) {
             <DropDownContainer>
                 <h3>Cart</h3>
                 <DropDownHeader onClick={toggling}>
-                    {selectedCart || "Cart 1"}
+                    {selectedCart || "Select Cart"}
                 </DropDownHeader>
                 {isOpen && (
                     <DropDownListContainer>

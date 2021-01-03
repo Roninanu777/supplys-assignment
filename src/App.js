@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import axios from "axios";
+import data from "./test.json";
 import styled from "styled-components";
 
 import "./App.css";
@@ -13,31 +13,24 @@ const Main = styled.div`
 `;
 
 function App() {
-    const [loading, setLoading] = useState(false);
     const [products, setProducts] = useState([]);
 
-    const getData = async () => {
-        const resp = await axios.get("https://fakestoreapi.com/products");
+    // const getCart = async () => {
+    //     const resp = await axios.get("https://fakestoreapi.com/carts?limit=3");
 
-        if (resp.status === 200) {
-            return resp.data;
-        }
-        return new Error(resp.status);
-    };
+    //     if (resp.status === 200) {
+    //         return resp.data;
+    //     }
+    //     return new Error(resp.status);
+    // };
 
     useEffect(() => {
-        setLoading(true);
-        getData()
-            .then((res) => {
-                setLoading(false);
-                setProducts(JSON.parse(JSON.stringify(res)));
-            })
-            .catch((err) => console.log(err));
+        setProducts(data);
     }, []);
 
     return (
         <Main>
-            <ProductPage loading={loading} products={products} />
+            <ProductPage products={products} />
         </Main>
     );
 }

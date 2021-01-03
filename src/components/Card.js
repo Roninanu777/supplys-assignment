@@ -1,5 +1,6 @@
 import styled, { keyframes } from "styled-components";
-import LazyLoad from "react-lazyload";
+import { LazyLoadImage } from "react-lazy-load-image-component";
+import "react-lazy-load-image-component/src/effects/blur.css";
 
 const CardContainer = styled.div`
     width: 100%;
@@ -26,38 +27,22 @@ const Details = styled.div`
     margin: 1rem 0;
 `;
 
-const loadingAnimation = keyframes`
-  0% {
-    background-color: #fff;
-  }
-  50% {
-    background-color: #646464;
-  }
-  100% {
-    background-color: #fff;
-  }
-`;
-
-const Placeholder = styled.div`
-    position: absolute;
-    left: 0;
-    top: 0;
-    right: 0;
-    bottom: 0;
-    animation: ${loadingAnimation} 1s infinite;
-`;
-
-export default function Card(props) {
-    const { title, price, image } = props.blob;
-
+export default function Card({ url }) {
     return (
         <CardContainer>
-            <LazyLoad placeholder={<Placeholder />}>
-                <Img src={image} alt="card" />
-            </LazyLoad>
+            <LazyLoadImage
+                alt="card"
+                effect="blur"
+                src={url}
+                style={{
+                    backgroundSize: "cover",
+                    width: "100%",
+                    height: "400px",
+                }}
+            />
             <Details>
-                <h4>{title}</h4>
-                <p>${price}</p>
+                <h4>Lorem ipsum dolor</h4>
+                <p>$110</p>
             </Details>
         </CardContainer>
     );

@@ -11,13 +11,13 @@ const ProductList = styled.div`
 `;
 
 function ProductPage(props) {
-    const { products, loading } = props;
+    const { products } = props;
 
     return (
         <ProductList>
-            {loading
-                ? "Loading..."
-                : products.map((item) => <Card key={item.id} blob={item} />)}
+            {products.map((item) => (
+                <Card key={item.id} url={item.download_url} />
+            ))}
         </ProductList>
     );
 }
