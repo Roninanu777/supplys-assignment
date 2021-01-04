@@ -1,3 +1,4 @@
+import { memo } from "react";
 import styled from "styled-components";
 import Card from "./Card";
 
@@ -13,11 +14,11 @@ const ProductList = styled.div`
 function ProductPage({ products }) {
     return (
         <ProductList>
-            {products.map((item) => (
-                <Card url={item} />
+            {products.map((item, index) => (
+                <Card key={index} url={item} />
             ))}
         </ProductList>
     );
 }
 
-export default ProductPage;
+export default memo(ProductPage);

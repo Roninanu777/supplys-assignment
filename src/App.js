@@ -51,7 +51,7 @@ function App() {
     useEffect(() => {
         getData()
             .then((resp) => {
-                setProducts([...products, ...resp.message]);
+                setProducts((prev) => [...prev, ...resp.message]);
             })
             .catch((err) => console.log(err));
     }, []);
@@ -60,7 +60,7 @@ function App() {
         if (isBottom) {
             getData()
                 .then((resp) => {
-                    setProducts([...products, ...resp.message]);
+                    setProducts((prev) => [...prev, ...resp.message]);
                 })
                 .catch((err) => console.log(err));
         }
