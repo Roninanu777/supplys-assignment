@@ -32,7 +32,7 @@ function App() {
     const getData = async () => {
         try {
             let resp = await axios.get(
-                "https://dog.ceo/api/breeds/image/random/12"
+                "https://dog.ceo/api/breeds/image/random/10"
             );
             setIsBottom(false);
             return resp.data;

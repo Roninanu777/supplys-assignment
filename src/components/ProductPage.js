@@ -1,4 +1,3 @@
-import { memo } from "react";
 import styled from "styled-components";
 import Card from "./Card";
 
@@ -21,4 +20,4 @@ function ProductPage({ products }) {
     );
 }
 
-export default memo(ProductPage);
+export default ProductPage;
