@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import data from "./test.json";
+import axios from "axios";
 import styled from "styled-components";
 
 import "./App.css";
@@ -14,19 +14,57 @@ const Main = styled.div`
 
 function App() {
     const [products, setProducts] = useState([]);
+    const [isBottom, setIsBottom] = useState(false);
 
-    // const getCart = async () => {
-    //     const resp = await axios.get("https://fakestoreapi.com/carts?limit=3");
+    const handleScroll = () => {
+        const scrollTop =
+            (document.documentElement && document.documentElement.scrollTop) ||
+            document.body.scrollTop;
+        const scrollHeight =
+            (document.documentElement &&
+                document.documentElement.scrollHeight) ||
+            document.body.scrollHeight;
+        if (scrollTop + window.innerHeight + 50 >= scrollHeight) {
+            setIsBottom(true);
+        }
+    };
 
-    //     if (resp.status === 200) {
-    //         return resp.data;
-    //     }
-    //     return new Error(resp.status);
-    // };
+    const getData = async () => {
+        try {
+            let resp = await axios.get(
+                "https://dog.ceo/api/breeds/image/random/12"
+            );
+            setIsBottom(false);
+            return resp.data;
+        } catch (error) {
+            return new Error("Failed to fetch");
+        }
+    };
 
     useEffect(() => {
-        setProducts(data);
+        window.addEventListener("scroll", handleScroll);
+        return () => {
+            window.removeEventListener("scroll", handleScroll);
+        };
     }, []);
+
+    useEffect(() => {
+        getData()
+            .then((resp) => {
+                setProducts([...products, ...resp.message]);
+            })
+            .catch((err) => console.log(err));
+    }, []);
+
+    useEffect(() => {
+        if (isBottom) {
+            getData()
+                .then((resp) => {
+                    setProducts([...products, ...resp.message]);
+                })
+                .catch((err) => console.log(err));
+        }
+    }, [isBottom]);
 
     return (
         <Main>

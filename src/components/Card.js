@@ -1,4 +1,4 @@
-import styled, { keyframes } from "styled-components";
+import styled from "styled-components";
 import { LazyLoadImage } from "react-lazy-load-image-component";
 import "react-lazy-load-image-component/src/effects/blur.css";
 
@@ -11,13 +11,6 @@ const CardContainer = styled.div`
     align-items: center;
     border: 1px solid #dadada;
     border-radius: 5px;
-`;
-
-const Img = styled.img`
-    width: 100%;
-    height: 200px;
-    margin: 10px 0;
-    background-size: cover;
 `;
 
 const Details = styled.div`
@@ -41,7 +34,7 @@ export default function Card({ url }) {
                 }}
             />
             <Details>
-                <h4>Lorem ipsum dolor</h4>
+                <p>Lorem ipsum dolor</p>
                 <p>$110</p>
             </Details>
         </CardContainer>
