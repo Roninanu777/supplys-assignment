@@ -3,8 +3,6 @@ import { LazyLoadImage } from "react-lazy-load-image-component";
 import "react-lazy-load-image-component/src/effects/blur.css";
 
 const CardContainer = styled.div`
-    width: 100%;
-    height: 100%;
     display: flex;
     position: relative;
     flex-direction: column;
@@ -27,11 +25,7 @@ export default function Card({ url }) {
                 alt="card"
                 effect="blur"
                 src={url}
-                style={{
-                    backgroundSize: "cover",
-                    width: "100%",
-                    height: "400px",
-                }}
+                style={{ width: "100%", height: "400px" }}
             />
             <Details>
                 <p>Lorem ipsum dolor</p>

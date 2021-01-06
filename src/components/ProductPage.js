@@ -1,3 +1,4 @@
+import { memo } from "react";
 import styled from "styled-components";
 import Card from "./Card";
 
@@ -8,6 +9,11 @@ const ProductList = styled.div`
     grid-template-columns: repeat(3, 1fr);
     grid-gap: 1.5rem;
     grid-template-rows: auto;
+    @media (max-width: 768px) {
+        width: 100%;
+        grid-template-columns: 1fr;
+        margin: 1.5rem 1rem;
+    }
 `;
 
 function ProductPage({ products }) {
@@ -20,4 +26,4 @@ function ProductPage({ products }) {
     );
 }
 
-export default ProductPage;
+export default memo(ProductPage);

@@ -1,16 +1,6 @@
 import { useState, useEffect } from "react";
 import axios from "axios";
-import styled from "styled-components";
-
-import "./App.css";
 import ProductPage from "./components/ProductPage";
-
-const Main = styled.div`
-    width: 100%;
-    height: 100%;
-    display: flex;
-    justify-content: center;
-`;
 
 function App() {
     const [products, setProducts] = useState([]);
@@ -66,11 +56,7 @@ function App() {
         }
     }, [isBottom]);
 
-    return (
-        <Main>
-            <ProductPage products={products} />
-        </Main>
-    );
+    return <ProductPage products={products} />;
 }
 
 export default App;
