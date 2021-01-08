@@ -4,11 +4,26 @@ import ImageCard from "./ImageCard";
 
 const Cart = ({ images, carts, loading }) => {
     const [cartId, setCartId] = useState(1);
+    const [cartProducts, setCartProducts] = useState([]);
     const { id } = useParams();
 
     useEffect(() => {
         setCartId(parseInt(id));
+        setCartProducts([]);
     }, [id]);
+
+    useEffect(() => {
+        if (carts.length > 0) {
+            carts[cartId - 1].products.forEach((item) => {
+                console.log(item);
+                let prod = {
+                    ...images[item.productId - 1],
+                    quantity: item.quantity,
+                };
+                setCartProducts((prev) => [...prev, prod]);
+            });
+        }
+    }, [cartId, carts]);
 
     switch (cartId) {
         case 1:
@@ -18,7 +33,7 @@ const Cart = ({ images, carts, loading }) => {
                         <p className="text-2xl text-indigo-800">Loading...</p>
                     ) : (
                         <div className="flex-col">
-                            {images.map((image, index) => (
+                            {cartProducts.map((image, index) => (
                                 <ImageCard blob={image} key={index} />
                             ))}
                         </div>
@@ -29,7 +44,7 @@ const Cart = ({ images, carts, loading }) => {
         case 2:
             return (
                 <div className="flex-col">
-                    {images.map((image, index) => (
+                    {cartProducts.map((image, index) => (
                         <ImageCard blob={image} key={index} />
                     ))}
                 </div>
@@ -38,7 +53,7 @@ const Cart = ({ images, carts, loading }) => {
         case 3:
             return (
                 <div className="flex-col">
-                    {images.map((image, index) => (
+                    {cartProducts.map((image, index) => (
                         <ImageCard blob={image} key={index} />
                     ))}
                 </div>

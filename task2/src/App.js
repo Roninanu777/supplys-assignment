@@ -14,15 +14,14 @@ function App() {
             .then((res) => res.json())
             .then((json) => {
                 console.log(json);
-                setLoading(false);
                 setImages((prev) => [...prev, ...json]);
-            });
-
-        fetch("https://fakestoreapi.com/carts?limit=3")
-            .then((res) => res.json())
-            .then((json) => {
-                console.log(json);
-                setCarts([...json]);
+                fetch("https://fakestoreapi.com/carts?limit=3")
+                    .then((res) => res.json())
+                    .then((json) => {
+                        setLoading(false);
+                        console.log(json);
+                        setCarts([...json]);
+                    });
             });
     }, []);
 
