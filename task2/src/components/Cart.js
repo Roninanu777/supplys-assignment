@@ -15,7 +15,6 @@ const Cart = ({ images, carts, loading }) => {
     useEffect(() => {
         if (carts.length > 0) {
             carts[cartId - 1].products.forEach((item) => {
-                console.log(item);
                 let prod = {
                     ...images[item.productId - 1],
                     quantity: item.quantity,

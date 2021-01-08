@@ -13,13 +13,11 @@ function App() {
         fetch("https://fakestoreapi.com/products")
             .then((res) => res.json())
             .then((json) => {
-                console.log(json);
                 setImages((prev) => [...prev, ...json]);
                 fetch("https://fakestoreapi.com/carts?limit=3")
                     .then((res) => res.json())
                     .then((json) => {
                         setLoading(false);
-                        console.log(json);
                         setCarts([...json]);
                     });
             });
