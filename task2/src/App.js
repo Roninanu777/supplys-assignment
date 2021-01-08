@@ -14,12 +14,12 @@ function App() {
             .then((res) => res.json())
             .then((json) => {
                 setImages((prev) => [...prev, ...json]);
-                fetch("https://fakestoreapi.com/carts?limit=3")
-                    .then((res) => res.json())
-                    .then((json) => {
-                        setLoading(false);
-                        setCarts([...json]);
-                    });
+                return fetch("https://fakestoreapi.com/carts?limit=3");
+            })
+            .then((res) => res.json())
+            .then((json) => {
+                setLoading(false);
+                setCarts([...json]);
             });
     }, []);
 
